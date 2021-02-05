@@ -91,7 +91,7 @@ public class TableFunction implements CharacteristicFunction{
 
 //class Main {
 //    public static void main(String[] args) {
-//        String pathToFile = "/Users/pstrukov/Desktop/Мучеба/Наушка/example.csv";
+//        String pathToFile = "example.csv";
 //        CharacteristicFunction function = new TableFunction(pathToFile);
 //
 //        Gamer gamer1 = new Gamer(1);

@@ -13,14 +13,15 @@ import ru.spbu.strukov.subsets.Partitioning;
 public class ForTest {
     
     public static Game getGame(){
-//        return new Game(4, new OutProportionalPayOff(), new TableFunction("/Users/pstrukov/Desktop/Мучеба/Наушка/example.csv"));
-//        return new Game(4, new SingleProportionalPayOff(), new TableFunction("/Users/pstrukov/Desktop/Мучеба/Наушка/example.csv"));
-//        return new Game(4, new ShapleyPayOff(), new TableFunction("/Users/pstrukov/Desktop/Мучеба/Наушка/example.csv"));
-//        return new Game(4, new PreProportionalExcessPayOff(), new TableFunction("/Users/pstrukov/Desktop/Мучеба/Наушка/example.csv"));
-//        return new Game(4, new EqualExcessPayOff(), new TableFunction("/Users/pstrukov/Desktop/Мучеба/Наушка/example.csv"));
+        String file_path = "example.csv";
+//        return new Game(4, new OutProportionalPayOff(), new TableFunction(file_path));
+//        return new Game(4, new SingleProportionalPayOff(), new TableFunction(file_path));
+//        return new Game(4, new ShapleyPayOff(), new TableFunction(file_path));
+//        return new Game(4, new PreProportionalExcessPayOff(), new TableFunction(file_path));
+//        return new Game(4, new EqualExcessPayOff(), new TableFunction(file_path));
 
-        return new Game(4, new SingleProportionalPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction("/Users/pstrukov/Desktop/Мучеба/Наушка/example.csv"));
-//        return new Game(4, new ShapleyPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction("/Users/pstrukov/Desktop/Мучеба/Наушка/example.csv"));
+        return new Game(4, new SingleProportionalPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction(file_path));
+//        return new Game(4, new ShapleyPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction(file_path));
 
 //        return new Game(4, new OutProportionalPayOff(), new ElementaryFactorsFunction());
 
