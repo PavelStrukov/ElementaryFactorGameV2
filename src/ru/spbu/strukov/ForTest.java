@@ -1,5 +1,7 @@
 package ru.spbu.strukov;
 
+import ru.spbu.strukov.CharacteristicFunctions.ElementaryFactorsFunction;
+import ru.spbu.strukov.CharacteristicFunctions.TableFunction;
 import ru.spbu.strukov.PayOffs.*;
 import java.util.ArrayList;
 import ru.spbu.strukov.subsets.Partitioning;
@@ -11,93 +13,103 @@ import ru.spbu.strukov.subsets.Partitioning;
 public class ForTest {
     
     public static Game getGame(){
-        
-//        return new Game(new SingleProportionalPayOff(), true, 5, 8, 13);
-//        return new Game(new EqualExcessPayOff(), true, 5, 8, 13);
-//        return new Game(new ShapleyPayOff(), true, 5, 8, 13);
-//        return new Game(new PreProportionalExcessPayOff(), true, 5, 8, 13);
-//        return new Game(new OutProportionalPayOff(), true, 5, 8, 13);
-//        return new Game(new SingleProportionalPayOff(), false, 5, 8, 13);
-//        return new Game(new EqualExcessPayOff(), false, 1, 4, 6);
-//        return new Game(new ShapleyPayOff(), false, 5, 8, 13);
-        
-//        return new Game(new ShapleyPayOff(), false, 1, 4, 6);
-//        return new Game(new PreProportionalExcessPayOff(), true, 1, 4, 6);
-//        return new Game(new OutProportionalPayOff(), true, 1, 4, 6);
+//        return new Game(4, new OutProportionalPayOff(), new TableFunction("/Users/pstrukov/Desktop/Мучеба/Наушка/example.csv"));
+//        return new Game(4, new SingleProportionalPayOff(), new TableFunction("/Users/pstrukov/Desktop/Мучеба/Наушка/example.csv"));
+//        return new Game(4, new ShapleyPayOff(), new TableFunction("/Users/pstrukov/Desktop/Мучеба/Наушка/example.csv"));
+//        return new Game(4, new PreProportionalExcessPayOff(), new TableFunction("/Users/pstrukov/Desktop/Мучеба/Наушка/example.csv"));
+//        return new Game(4, new EqualExcessPayOff(), new TableFunction("/Users/pstrukov/Desktop/Мучеба/Наушка/example.csv"));
 
-//        return new Game(16, new OutProportionalPayOff(), false);
-//        return new Game(16, new SingleProportionalPayOff(), false);
-//        return new Game(3, new OutProportionalPayOff());
-        
-//        return new Game(new OutProportionalPayOff(), false, 1, 5, 8, 9, 10, 12, 27);
-//        return new Game(new ShapleyPayOff(), false, 1, 5, 8, 9, 10, 12, 27);
-//        return new Game(new OutProportionalPayOff(), true, 1, 5, 8, 9, 10, 12, 27);
-//        return new Game(new SingleProportionalPayOff(), false, 1, 5, 8, 9, 10, 12, 27);
-        
-//        return new Game(new PreProportionalExcessPayOff(), false, 24, 25, 27, 32, 36, 40, 42, 45, 49 );
-//        return new Game(new PreProportionalExcessPayOff(), false, 24, 25, 27, 32, 36, 49);
-        
-//        return new Game(new SingleProportionalPayOff(), false, 24, 28, 32, 36, 40, 42);
-//        return new Game(new SingleProportionalPayOff(), false, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
-//        return new Game(new SingleProportionalPayOff(), true, 24, 28, 32, 36, 40, 42);
-//        return new Game(new OutProportionalPayOff(), false, 24, 28, 32, 36, 40, 42);
-//        return new Game(new OutProportionalPayOff(), true, 24, 28, 32, 36, 40, 42);
-//        return new Game(new PreProportionalExcessPayOff(), false, 24, 28, 32, 36, 40, 42);
-        return new Game(new PreProportionalExcessPayOff(), true, 24, 28, 32, 36, 40, 42);
-//        return new Game(new ShapleyPayOff(), false, 24, 28, 32, 36, 40, 42);
-//        return new Game(new ShapleyPayOff(), true, 24, 28, 32, 36, 40, 42);
-//        return new Game(new EqualExcessPayOff(), false, 24, 28, 32, 36, 40, 42);
-//        return new Game(new EqualExcessPayOff(), true, 24, 28, 32, 36, 40, 42);
+        return new Game(4, new SingleProportionalPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction("/Users/pstrukov/Desktop/Мучеба/Наушка/example.csv"));
+//        return new Game(4, new ShapleyPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction("/Users/pstrukov/Desktop/Мучеба/Наушка/example.csv"));
 
-//        return new Game(new SingleProportionalPayOff(), false, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
-//        return new Game(new SingleProportionalPayOff(), true, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
-//        return new Game(new OutProportionalPayOff(), false, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
-//        return new Game(new OutProportionalPayOff(), true, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
-//        return new Game(new PreProportionalExcessPayOff(), false,TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
-//        return new Game(new PreProportionalExcessPayOff(), true, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
-//        return new Game(new ShapleyPayOff(), false, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
-//        return new Game(new ShapleyPayOff(), true, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
-//        return new Game(new EqualExcessPayOff(), false, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
-//        return new Game(new EqualExcessPayOff(), true, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
+//        return new Game(4, new OutProportionalPayOff(), new ElementaryFactorsFunction());
 
-//        return new Game(new PreProportionalExcessPayOff(), false, 3, 10, 15, 8); //Two perfect coalitions. Perfect partition.
-//        return new Game(new PreProportionalExcessPayOff(), true, 3, 10, 15, 8); //
-//        return new Game(new EqualExcessPayOff(), false, 3, 10, 15, 8);           //Two perfect coalitions. Perfect partition.
-//        return new Game(new EqualExcessPayOff(), true, 3, 10, 15, 8);            //
-//        return new Game(new ShapleyPayOff(), false, 3, 10, 15, 8);               //Two perfect coalitions. Perfect partition.
-//        return new Game(new ShapleyPayOff(), true, 3, 10, 15, 8);                //
-//        return new Game(new SingleProportionalPayOff(), false, 3, 10, 15, 8);       //Two perfect coalitions. Perfect partition.
-//        return new Game(new SingleProportionalPayOff(), true, 3, 10, 15, 8);       //
-//        return new Game(new SingleProportionalPayOff(), false, TypeOfDecision.PERSONAL, 3, 107, 15, 8);       //
-//        return new Game(new OutProportionalPayOff(), false, 3, 10, 15, 8);       //
-//        return new Game(new OutProportionalPayOff(), true, 3, 10, 15, 8);       //
-//        return new Game(new OutProportionalPayOff(), true, TypeOfDecision.AVERAGE, 3, 10, 15, 8);       //
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), true, 5, 8, 13);
+//        return new Game(new EqualExcessPayOff(), new ElementaryFactorsFunction(), true, 5, 8, 13);
+//        return new Game(new ShapleyPayOff(), new ElementaryFactorsFunction(), true, 5, 8, 13);
+//        return new Game(new PreProportionalExcessPayOff(), new ElementaryFactorsFunction(), true, 5, 8, 13);
+//        return new Game(new OutProportionalPayOff(), new ElementaryFactorsFunction(), true, 5, 8, 13);
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), false, 5, 8, 13);
+//        return new Game(new EqualExcessPayOff(), new ElementaryFactorsFunction(), false, 1, 4, 6);
+//        return new Game(new ShapleyPayOff(), new ElementaryFactorsFunction(), false, 5, 8, 13);
         
-//        return new Game(new PreProportionalExcessPayOff(), false, 1, 10, 15, 8); //Two perfect coalitions. Perfect partition.
-//        return new Game(new PreProportionalExcessPayOff(), true, 1, 10, 15, 8); //
-//        return new Game(new EqualExcessPayOff(), false, 1, 10, 15, 8);           //Two perfect coalitions. Perfect partition.
-//        return new Game(new EqualExcessPayOff(), true, 1, 10, 15, 8);            //
-//        return new Game(new ShapleyPayOff(), false, 1, 10, 15, 8);               //Two perfect coalitions. Perfect partition.
-//        return new Game(new ShapleyPayOff(), true, 1, 10, 15, 8);                //
-//        return new Game(new SingleProportionalPayOff(), false, 1, 10, 15, 8);       //Two perfect coalitions. Perfect partition.
-//        return new Game(new SingleProportionalPayOff(), true, 1, 10, 15, 8);       //
-//        return new Game(new OutProportionalPayOff(), false, 1, 10, 15, 8);       //
+//        return new Game(new ShapleyPayOff(), new ElementaryFactorsFunction(), false, 1, 4, 6);
+//        return new Game(new PreProportionalExcessPayOff(), new ElementaryFactorsFunction(), true, 1, 4, 6);
+//        return new Game(new OutProportionalPayOff(), new ElementaryFactorsFunction(), true, 1, 4, 6);
+
+//        return new Game(16, new OutProportionalPayOff(), new ElementaryFactorsFunction(), false);
+//        return new Game(16, new SingleProportionalPayOff(), new ElementaryFactorsFunction(), false);
+//        return new Game(3, new OutProportionalPayOff() new ElementaryFactorsFunction(),);
         
-//        return new Game(new ShapleyPayOff(), true, 1, 2, 3, 4);
-//        return new Game(new OutProportionalPayOff(), false, 8, 9, 10, 5);
-//        return new Game(new SingleProportionalPayOff(), 10, 13);
-//        return new Game(new SingleProportionalPayOff(), 8, 5);
-//        return new Game(new SingleProportionalPayOff(), false, 4,6,8,21,32);
-//        return new Game(new EqualExcessPayOff(), true, 4,6,8,21,32);
-//        return new Game(new EqualExcessPayOff(), false, 98,100,120,125, 105,108,112,114);
-//        return new Game(new SingleProportionalPayOff(), true, 98,100,120,125, 105,108,112,114);
-//        return new Game(new SingleProportionalPayOff(), false, 98,100,120,125, 105,108,112,114);
+//        return new Game(new OutProportionalPayOff(), new ElementaryFactorsFunction(), false, 1, 5, 8, 9, 10, 12, 27);
+//        return new Game(new ShapleyPayOff(), new ElementaryFactorsFunction(), false, 1, 5, 8, 9, 10, 12, 27);
+//        return new Game(new OutProportionalPayOff(), new ElementaryFactorsFunction(), true, 1, 5, 8, 9, 10, 12, 27);
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), false, 1, 5, 8, 9, 10, 12, 27);
+        
+//        return new Game(new PreProportionalExcessPayOff(), new ElementaryFactorsFunction(), false, 24, 25, 27, 32, 36, 40, 42, 45, 49 );
+//        return new Game(new PreProportionalExcessPayOff(), new ElementaryFactorsFunction(), false, 24, 25, 27, 32, 36, 49);
+        
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), false, 24, 28, 32, 36, 40, 42);
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), false, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), true, 24, 28, 32, 36, 40, 42);
+//        return new Game(new OutProportionalPayOff(), new ElementaryFactorsFunction(), false, 24, 28, 32, 36, 40, 42);
+//        return new Game(new OutProportionalPayOff(), new ElementaryFactorsFunction(), true, 24, 28, 32, 36, 40, 42);
+//        return new Game(new PreProportionalExcessPayOff(), new ElementaryFactorsFunction(), false, 24, 28, 32, 36, 40, 42);
+//        return new Game(new PreProportionalExcessPayOff(), new ElementaryFactorsFunction(), true, 24, 28, 32, 36, 40, 42);
+//        return new Game(new ShapleyPayOff(), new ElementaryFactorsFunction(), false, 24, 28, 32, 36, 40, 42);
+//        return new Game(new ShapleyPayOff(), new ElementaryFactorsFunction(), true, 24, 28, 32, 36, 40, 42);
+//        return new Game(new EqualExcessPayOff(), new ElementaryFactorsFunction(), false, 24, 28, 32, 36, 40, 42);
+//        return new Game(new EqualExcessPayOff(), new ElementaryFactorsFunction(), true, 24, 28, 32, 36, 40, 42);
+
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), false, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), true, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
+//        return new Game(new OutProportionalPayOff(), new ElementaryFactorsFunction(), false, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
+//        return new Game(new OutProportionalPayOff(), new ElementaryFactorsFunction(), true, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
+//        return new Game(new PreProportionalExcessPayOff(), new ElementaryFactorsFunction(), false,TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
+//        return new Game(new PreProportionalExcessPayOff(), new ElementaryFactorsFunction(), true, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
+//        return new Game(new ShapleyPayOff(), new ElementaryFactorsFunction(), false, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
+//        return new Game(new ShapleyPayOff(), new ElementaryFactorsFunction(), true, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
+//        return new Game(new EqualExcessPayOff(), new ElementaryFactorsFunction(), false, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
+//        return new Game(new EqualExcessPayOff(), new ElementaryFactorsFunction(), true, TypeOfDecision.AVERAGE, 24, 28, 32, 36, 40, 42);
+
+//        return new Game(new PreProportionalExcessPayOff(), new ElementaryFactorsFunction(), false, 3, 10, 15, 8); //Two perfect coalitions. Perfect partition.
+//        return new Game(new PreProportionalExcessPayOff(), new ElementaryFactorsFunction(), true, 3, 10, 15, 8); //
+//        return new Game(new EqualExcessPayOff(), new ElementaryFactorsFunction(), false, 3, 10, 15, 8);           //Two perfect coalitions. Perfect partition.
+//        return new Game(new EqualExcessPayOff(), new ElementaryFactorsFunction(), true, 3, 10, 15, 8);            //
+//        return new Game(new ShapleyPayOff(), new ElementaryFactorsFunction(), false, 3, 10, 15, 8);               //Two perfect coalitions. Perfect partition.
+//        return new Game(new ShapleyPayOff(), new ElementaryFactorsFunction(), true, 3, 10, 15, 8);                //
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), false, 3, 10, 15, 8);       //Two perfect coalitions. Perfect partition.
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), true, 3, 10, 15, 8);       //
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), false, TypeOfDecision.PERSONAL, 3, 107, 15, 8);       //
+//        return new Game(new OutProportionalPayOff(), new ElementaryFactorsFunction(), false, 3, 10, 15, 8);       //
+//        return new Game(new OutProportionalPayOff(), new ElementaryFactorsFunction(), true, 3, 10, 15, 8);       //
+//        return new Game(new OutProportionalPayOff(), new ElementaryFactorsFunction(), true, TypeOfDecision.AVERAGE, 3, 10, 15, 8);       //
+        
+//        return new Game(new PreProportionalExcessPayOff(), new ElementaryFactorsFunction(), false, 1, 10, 15, 8); //Two perfect coalitions. Perfect partition.
+//        return new Game(new PreProportionalExcessPayOff(), new ElementaryFactorsFunction(), true, 1, 10, 15, 8); //
+//        return new Game(new EqualExcessPayOff(), new ElementaryFactorsFunction(), false, 1, 10, 15, 8);           //Two perfect coalitions. Perfect partition.
+//        return new Game(new EqualExcessPayOff(), new ElementaryFactorsFunction(), true, 1, 10, 15, 8);            //
+//        return new Game(new ShapleyPayOff(), new ElementaryFactorsFunction(), false, 1, 10, 15, 8);               //Two perfect coalitions. Perfect partition.
+//        return new Game(new ShapleyPayOff(), new ElementaryFactorsFunction(), true, 1, 10, 15, 8);                //
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), false, 1, 10, 15, 8);       //Two perfect coalitions. Perfect partition.
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), true, 1, 10, 15, 8);       //
+//        return new Game(new OutProportionalPayOff(), new ElementaryFactorsFunction(), false, 1, 10, 15, 8);       //
+        
+//        return new Game(new ShapleyPayOff(), new ElementaryFactorsFunction(), true, 1, 2, 3, 4);
+//        return new Game(new OutProportionalPayOff(), new ElementaryFactorsFunction(), false, 8, 9, 10, 5);
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), 10, 13);
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), 8, 5);
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), false, 4,6,8,21,32);
+//        return new Game(new EqualExcessPayOff(), new ElementaryFactorsFunction(), true, 4,6,8,21,32);
+//        return new Game(new EqualExcessPayOff(), new ElementaryFactorsFunction(), false, 98,100,120,125, 105,108,112,114);
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), true, 98,100,120,125, 105,108,112,114);
+//        return new Game(new SingleProportionalPayOff(), new ElementaryFactorsFunction(), false, 98,100,120,125, 105,108,112,114);
     }
     
     public static void main(String[] args) {
 //        test_elementaryFactors(24+28+32+36+40+42);
 //        test_elementaryFactors(   28+32+36+40+42);
-        test_elementaryFactors(40+42);
+//        test_elementaryFactors(40+42);
         /*
         24, 9;   28, 11;   32, 10;   36, 10;   40, 11;   42, 12
         
@@ -141,8 +153,8 @@ public class ForTest {
             System.out.print("Partition       ");
             for (ArrayList<Gamer> set : partition) {                //Coalitions
                 printSet(set);
-                Coalition c = Coalition.makeTemporaryCoalition(set);
-                CalculateIncome.calculateIncome(c);
+                Coalition c = Coalition.makeTemporaryCoalition(g, set);
+                g.characteristicFunction.calculateIncome(c);
                 summaryProfit += c.getIncome;
 }
             System.out.println(" -> (" + summaryProfit + ")");
@@ -177,21 +189,21 @@ public class ForTest {
         System.out.print("}");
     }
 
-    /**
-     * for testing elementaryFactors method
-     *
-     * @param n
-     */
-    public static void test_elementaryFactors(int n) {
-        System.out.println("--------------------------------- " + n);
-        ArrayList<Integer> ret = CalculateIncome.elementaryFactors(n);
-        int sum = 0;
-        for (Integer re : ret) {
-            System.out.println("*" + re);
-            sum += re;
-        }
-        System.out.println("Elementary factors sum " + sum);
-    }
+//    /**
+//     * for testing elementaryFactors method
+//     *
+//     * @param n
+//     */
+//    public static void test_elementaryFactors(int n) {
+//        System.out.println("--------------------------------- " + n);
+//        ArrayList<Integer> ret = ElementaryFactorsFunction.elementaryFactors(n);
+//        int sum = 0;
+//        for (Integer re : ret) {
+//            System.out.println("*" + re);
+//            sum += re;
+//        }
+//        System.out.println("Elementary factors sum " + sum);
+//    }
     
 
 }

@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ru.spbu.strukov;
+package ru.spbu.strukov.CharacteristicFunctions;
+
+import ru.spbu.strukov.NumberOwner;
 
 import java.util.ArrayList;
 
@@ -11,14 +13,14 @@ import java.util.ArrayList;
  *
  * @author Dell
  */
-public class CalculateIncome {
+public class ElementaryFactorsFunction implements CharacteristicFunction{
     
     /**
-     * Method CalculateIncome Counts an Income for Gamer or Coalition
+     * Method ElementaryFactorsFunction Counts an Income for Gamer or Coalition
      *
      * @param gamerOrCoalition
      */
-    public static void calculateIncome(NumberOwner gamerOrCoalition) {
+    public void calculateIncome(NumberOwner gamerOrCoalition) {
         gamerOrCoalition.setIncome(sumOfElementaryFactors(gamerOrCoalition.getNumber()));
     }
 

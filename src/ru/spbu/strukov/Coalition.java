@@ -15,7 +15,7 @@ public class Coalition extends NumberOwner{
     private static final boolean TEMP_COALITION = false;
     
     public ArrayList<Gamer> gamers;//тут будут лежать геймеры коалиции
-    //private Game game;
+    private Game game;
     public final int name;
     double offerAvIncome;
     double payOffIncome;
@@ -25,24 +25,25 @@ public class Coalition extends NumberOwner{
     HashMap<Gamer, Double> pies;//каждому игроку соотеветвует его выигрыш в коалиции
     
     
-    public static Coalition makeTemporaryCoalition(Gamer... gamers) {
-        return new Coalition(TEMP_COALITION, gamers);
+    public static Coalition makeTemporaryCoalition(Game game, Gamer... gamers) {
+        return new Coalition(TEMP_COALITION, game, gamers);
     }
     
-    public static Coalition makeTemporaryCoalition(ArrayList<Gamer> gamers) {
-        return new Coalition(TEMP_COALITION, gamers);
+    public static Coalition makeTemporaryCoalition(Game game, ArrayList<Gamer> gamers) {
+        return new Coalition(TEMP_COALITION, game, gamers);
     }
     
-    public static Coalition makeCoalition(Gamer... gamers) {// no occurrences
-        return new Coalition(REAL_COALITION, gamers);
+    public static Coalition makeCoalition(Game game, Gamer... gamers) {// no occurrences
+        return new Coalition(REAL_COALITION, game, gamers);
     }
     
-    public static Coalition makeCoalition(ArrayList<Gamer> gamers) {
-        return new Coalition(REAL_COALITION, gamers);
+    public static Coalition makeCoalition(Game game, ArrayList<Gamer> gamers) {
+        return new Coalition(REAL_COALITION, game, gamers);
     }
     
-    private Coalition(boolean realCoalition, Gamer... gamers) {
+    private Coalition(boolean realCoalition, Game game, Gamer... gamers) {
         this.gamers = new ArrayList<>(gamers.length);
+        this.game = game;
         for (Gamer gamer : gamers) {
             this.gamers.add(gamer);
         }
@@ -50,8 +51,9 @@ public class Coalition extends NumberOwner{
         pies = new HashMap<>();
     }
     
-    private Coalition(boolean realCoalition, ArrayList<Gamer> gamers) {
+    private Coalition(boolean realCoalition, Game game, ArrayList<Gamer> gamers) {
         this.gamers = gamers;
+        this.game = game;
         name = realCoalition ? gamersAssign() : -1;
         pies = new HashMap<>();
     }
@@ -123,15 +125,17 @@ public class Coalition extends NumberOwner{
         offer = null;
         offerAvIncome = 0;
     }
+
+    public Game getGame(){ return this.game; }
         
-    public static Coalition makeTemporaryCoalitionByItsOrderNumber(int n, ArrayList<Gamer> allGamers) {
+    public static Coalition makeTemporaryCoalitionByItsOrderNumber(Game game, int n, ArrayList<Gamer> allGamers) {
         ArrayList<Gamer> gamers = new ArrayList<>();
         for (int i = 0, k = 1; i < allGamers.size(); i++, k <<= 1) {
             if ((n & k) != 0) {
                 gamers.add(allGamers.get(i));
             }
         }
-        return gamers.isEmpty() ? null : makeTemporaryCoalition(gamers);
+        return gamers.isEmpty() ? null : makeTemporaryCoalition(game, gamers);
     }
     
 //    public void setPies(){//для постоянной коалиции

@@ -6,8 +6,9 @@
 package ru.spbu.strukov.PayOffs;
 
 import java.util.ArrayList;
-import ru.spbu.strukov.CalculateIncome;
+import ru.spbu.strukov.CharacteristicFunctions.ElementaryFactorsFunction;
 import ru.spbu.strukov.Coalition;
+import ru.spbu.strukov.Game;
 import ru.spbu.strukov.Gamer;
 
 /**
@@ -25,12 +26,13 @@ public class OutProportionalPayOff implements PayOff {
     @Override
     public void calculateGamersPie(Coalition coalition) {
         for (Gamer gamer : coalition.gamers) {
+            Game game = coalition.getGame();
             ArrayList<Gamer> minusGamers = new ArrayList<>(coalition.gamers);//создаем новый массив игроков на основе предыдущего
             minusGamers.remove(gamer);//убираем текущего игрока gamer (так пройдемся по всем игрокам изначального массива)
             Coalition minusGamerCoalition
                     = //new Coalition(minusGamers);//создаем новую коалицию без текущего игрока gamer
-                    Coalition.makeTemporaryCoalition(minusGamers);
-            CalculateIncome.calculateIncome(minusGamerCoalition);//считаем выигрыш новой коалиции без игрока gamer
+                    Coalition.makeTemporaryCoalition(game, minusGamers);
+            game.characteristicFunction.calculateIncome(minusGamerCoalition);//считаем выигрыш новой коалиции без игрока gamer
             gamer.setRate(coalition.getIncome() - minusGamerCoalition.getIncome());
         }
         double sumRate = 0;

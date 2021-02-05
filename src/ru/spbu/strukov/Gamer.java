@@ -1,5 +1,7 @@
 package ru.spbu.strukov;
 
+import ru.spbu.strukov.CharacteristicFunctions.ElementaryFactorsFunction;
+
 import java.util.Locale;
 
 /**
@@ -12,7 +14,7 @@ public class Gamer extends NumberOwner{
     Coalition coalition;//ссылка на коалицию, в которой состоит игрок
     double rate;
     double pie;//выигрыш, который получит игрок, находясь в коалиции
-//    private Game game;
+    private Game game;
     double offerPie;
 //    boolean decision;// true -> если согласен на изменение состава коалиции
                      // false -> если против
@@ -22,17 +24,18 @@ public class Gamer extends NumberOwner{
      * @param i his own number and serial number
      * @param game 
      */
-    Gamer(int i, Game game) {//конструктор. Изначально у каждого игрока собственное число = его номеру
+    public Gamer(int i, Game game) {//конструктор. Изначально у каждого игрока собственное число = его номеру
+        this.game = game;
         ownNumber = i;
         calculateIncome();
         pie = getIncome();
     }
-    
+
     /**
      * Calculates income
      */
     private void calculateIncome() {
-        CalculateIncome.calculateIncome(this);
+        this.game.characteristicFunction.calculateIncome(this);
     }
 
     /**
@@ -60,6 +63,8 @@ public class Gamer extends NumberOwner{
     public int getNumber() {//получаем собственное число
         return ownNumber;
     }
+
+    public Game getGame(){ return this.game; }
 
     /**
      * Gets income

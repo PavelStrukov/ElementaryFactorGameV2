@@ -12,9 +12,9 @@ public abstract class NumberOwner {//общий класс для всех иг�
     NumberOwner offer; //ссылочка на игрока или коалицию, предложение которой хотим принять
     
     
-    abstract int getNumber();
+    public abstract int getNumber();
     
-    void setIncome(int income) {this.getIncome = income;}
+    public void setIncome(int income) {this.getIncome = income;}
     
     public int getIncome(){
         return this.getIncome;

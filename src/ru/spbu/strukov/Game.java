@@ -1,5 +1,7 @@
 package ru.spbu.strukov;
 
+import ru.spbu.strukov.CharacteristicFunctions.CharacteristicFunction;
+import ru.spbu.strukov.CharacteristicFunctions.ElementaryFactorsFunction;
 import ru.spbu.strukov.PayOffs.PayOff;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +33,7 @@ public class Game {
     PayOff payoff;
     HashMap<Gamer, NumberProfit> bestCoalitionForGamer;
     boolean isLargeInitialCoalition;
+    public CharacteristicFunction characteristicFunction;
 
     /**
      * Constructor that creates object with separate coalitions.
@@ -38,8 +41,8 @@ public class Game {
      * @param n
      * @param payoff
      */
-    Game(int n, PayOff payoff) {//переопределяем конструктор строка 70
-        this(n, payoff, false);
+    Game(int n, PayOff payoff, CharacteristicFunction function) {//переопределяем конструктор строка 70
+        this(n, payoff, function, false);
     }
 
     /**
@@ -51,13 +54,14 @@ public class Game {
      * @param large If true --- large coalition will be created, else --- each
      * gqmer in separate coalition.
      */
-    Game(int n, PayOff payoff, boolean large) {//задаем параметры игры
-        this(n, payoff, large, TypeOfDecision.PERSONAL);
+    Game(int n, PayOff payoff, CharacteristicFunction function, boolean large) {//задаем параметры игры
+        this(n, payoff, large, TypeOfDecision.PERSONAL, function);
         
     }
-    Game(int n, PayOff payoff, boolean large, TypeOfDecision decision) {//задаем параметры игры
+    Game(int n, PayOff payoff, boolean large, TypeOfDecision decision, CharacteristicFunction function) {//задаем параметры игры
         this.payoff = payoff;
         this.decision = decision;
+        this.characteristicFunction = function;
         coalitions = new ArrayList<>(n);//игроков будет n
         gamers = new ArrayList<>(n);//коалиций будет n
         for (int i = 1; i <= n; i++) {//создаем n игроков и сразу же добавляем их в массив игроков gamers
@@ -96,8 +100,8 @@ public class Game {
      * @param payoff
      * @param ns array of gamers
      */
-    Game(PayOff payoff, int... ns) {   //Sample   new Game(payoff, 5, 7, 11, 13)
-        this(payoff, false, ns);
+    Game(PayOff payoff, CharacteristicFunction function, int... ns) {   //Sample   new Game(payoff, 5, 7, 11, 13)
+        this(payoff, function, false, ns);
     }
 
     /**
@@ -107,13 +111,14 @@ public class Game {
      * @param large
      * @param ns array of gamers
      */
-    Game(PayOff payoff, boolean large, int... ns) {
-        this(payoff, large, TypeOfDecision.PERSONAL, ns);
+    Game(PayOff payoff, CharacteristicFunction function, boolean large, int... ns) {
+        this(payoff, function, large, TypeOfDecision.PERSONAL, ns);
     }
     
-    Game(PayOff payoff, boolean large, TypeOfDecision decision, int... ns) {
+    Game(PayOff payoff, CharacteristicFunction function, boolean large, TypeOfDecision decision, int... ns) {
         this.decision = decision;
         this.payoff = payoff;
+        this.characteristicFunction = function;
         coalitions = new ArrayList<>(ns.length);
         gamers = new ArrayList<>(ns.length);
         for (int i = 0; i < ns.length; i++) {
@@ -137,8 +142,8 @@ public class Game {
 //                gamer.pie = gamer.coalition.pies.get(gamer);
 //            }
 //        }
-        Coalition coalition = Coalition.makeCoalition(gamerList);
-        CalculateIncome.calculateIncome(coalition);
+        Coalition coalition = Coalition.makeCoalition(this, gamerList);
+        characteristicFunction.calculateIncome(coalition);
         payoff.calculateGamersPie(coalition);//Это вычисление доли каждого игрока в коалиции согласно дележу.
 //        coalition.setPies();
         coalitions.add(coalition);//типа регистрируем
@@ -224,8 +229,8 @@ public class Game {
         }
         int m = 0x1 << gamers.size();
         for (int k = 1; k < m; k++) {
-            Coalition tempCoalition = Coalition.makeTemporaryCoalitionByItsOrderNumber(k, gamers);
-            CalculateIncome.calculateIncome(tempCoalition);
+            Coalition tempCoalition = Coalition.makeTemporaryCoalitionByItsOrderNumber(this, k, gamers);
+            characteristicFunction.calculateIncome(tempCoalition);
 //            for (Gamer gamer : tempCoalition.gamers) {
 //                gamer.pie = gamer.getIncome();
 //            }
@@ -404,8 +409,8 @@ public class Game {
                 }
                 ArrayList<Gamer> unitedGamers = new ArrayList<>(coalition.gamers);//объединяем всех геймеров двух коалиций
                 unitedGamers.addAll(otherCoalition.gamers);
-                Coalition unitedTemporaryCoalition = Coalition.makeTemporaryCoalition(unitedGamers);//для них создаем общую коалицию
-                CalculateIncome.calculateIncome(unitedTemporaryCoalition);
+                Coalition unitedTemporaryCoalition = Coalition.makeTemporaryCoalition(this, unitedGamers);//для них создаем общую коалицию
+                characteristicFunction.calculateIncome(unitedTemporaryCoalition);
                 if (decision == TypeOfDecision.AVERAGE) {
 
                     unitedTemporaryCoalition.offerAvIncome
@@ -490,17 +495,17 @@ public class Game {
         } else {
             changedGamers.remove(gamer);
         }
-        Coalition changedTemporaryCoalition = Coalition.makeTemporaryCoalition(changedGamers);
+        Coalition changedTemporaryCoalition = Coalition.makeTemporaryCoalition(this, changedGamers);
         return checkForOffer(changedTemporaryCoalition);
     }
 
     private Coalition checkForOffer(Gamer gamer1, Gamer gamer2) {
-        Coalition pairCoalition = Coalition.makeTemporaryCoalition(gamer1, gamer2);
+        Coalition pairCoalition = Coalition.makeTemporaryCoalition(this, gamer1, gamer2);
         return checkForOffer(pairCoalition);
     }
 
     private Coalition checkForOffer(Coalition coalition) {
-        CalculateIncome.calculateIncome(coalition);
+        characteristicFunction.calculateIncome(coalition);
         coalition.offerAvIncome
                 = (double) coalition.getIncome / coalition.gamers.size();
         payoff.calculateGamersPie(coalition);
@@ -517,8 +522,8 @@ public class Game {
         if (participant instanceof Coalition) {
             ArrayList<Gamer> unitedGamers = new ArrayList<>(coalition.gamers);
             unitedGamers.addAll(((Coalition) participant).gamers);
-            lastCoalition = Coalition.makeTemporaryCoalition(unitedGamers);
-            CalculateIncome.calculateIncome(lastCoalition);
+            lastCoalition = Coalition.makeTemporaryCoalition(this, unitedGamers);
+            characteristicFunction.calculateIncome(lastCoalition);
             payoff.calculateGamersPie(lastCoalition);
 //            lastCoalition.setPies();
             return makeDecision(lastCoalition, tempCoalition);
@@ -646,7 +651,7 @@ public class Game {
 //        gamer.coalition.clearOffer();
 //        gamer.coalition.gamers.remove(gamer);               //Игрок убирается из перчня игроков коалиции.
 //        gamer.coalition.restoreGamerPies();                 //Паям игроков присваиваются их текущие значения (на всякий случай, если паи изменялись временными коалициями).
-//        CalculateIncome.calculateIncome(gamer.coalition);   //Вычисляется выигрыш коалиции уже без ушедшего игрока.
+//        ElementaryFactorsFunction.calculateIncome(gamer.coalition);   //Вычисляется выигрыш коалиции уже без ушедшего игрока.
 //        payoff.calculateGamersPie(gamer.coalition);         //Делёжка выигрыша коалиции между игроками.                
 ////        gamer.coalition.setPies();                          //Запись в коалицию новых выигрышей игроков. 
 ////        gamer.coalition = null;                             //Игрок теперь вне всяких коалиций.
@@ -674,7 +679,7 @@ public class Game {
         }
         for (Gamer gamer : gamers) {
 //        gamer.coalition.restoreGamerPies();                 //Паям игроков присваиваются их текущие значения (на всякий случай, если паи изменялись временными коалициями).
-            CalculateIncome.calculateIncome(gamer.coalition);   //Вычисляется выигрыш коалиции уже без ушедшего игрока.
+            characteristicFunction.calculateIncome(gamer.coalition);   //Вычисляется выигрыш коалиции уже без ушедшего игрока.
             payoff.calculateGamersPie(gamer.coalition);         //Делёжка выигрыша коалиции между игроками.                
 //        gamer.coalition.setPies();                          //Запись в коалицию новых выигрышей игроков. 
 //        gamer.coalition = null;                             //Игрок теперь вне всяких коалиций.
@@ -713,7 +718,7 @@ public class Game {
         gamer.clearOffer();
         offer.clearOffer();
         offer.gamers.add(gamer);
-        CalculateIncome.calculateIncome(offer);
+        characteristicFunction.calculateIncome(offer);
         payoff.calculateGamersPie(offer);
 //        offer.setPies();
     }
@@ -750,7 +755,7 @@ public class Game {
         }
         namer.clearOffer();
         namer.lastChange = 0;
-        CalculateIncome.calculateIncome(namer);
+        characteristicFunction.calculateIncome(namer);
         payoff.calculateGamersPie(namer);
 //        namer.setPies();
 
@@ -784,7 +789,7 @@ public class Game {
                     + "" + String.format(Locale.US, "%4d", gamer.getIncome()) +";"
                     + "" + String.format(Locale.US, "%4d", numCoalPie.coalitionNumber) + "="
                     + inout + ";"
-                    + Coalition.makeTemporaryCoalitionByItsOrderNumber(numCoalPie.coalitionNumber, game.gamers)
+                    + Coalition.makeTemporaryCoalitionByItsOrderNumber(game, numCoalPie.coalitionNumber, game.gamers)
             );
         }
         System.out.println("\r\n####################################################################" 

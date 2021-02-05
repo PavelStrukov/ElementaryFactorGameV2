@@ -8,8 +8,9 @@ package ru.spbu.strukov.PayOffs;
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
-import ru.spbu.strukov.CalculateIncome;
+import ru.spbu.strukov.CharacteristicFunctions.ElementaryFactorsFunction;
 import ru.spbu.strukov.Coalition;
+import ru.spbu.strukov.Game;
 import ru.spbu.strukov.Gamer;
 import ru.spbu.strukov.Permutations.PermutationGenerator;
 import ru.spbu.strukov.Permutations.Permutations;
@@ -27,7 +28,7 @@ public class ShapleyPayOff implements PayOff {
     public void calculateGamersPie(Coalition coalition) {
         if (coalition.gamers.size() == 1) {
             Gamer gamer = coalition.gamers.get(0);
-            CalculateIncome.calculateIncome(gamer);
+            coalition.getGame().characteristicFunction.calculateIncome(gamer);
 //            if(coalition.name == -1){//если коалиция временная и состоит из одного игрока
 //                                     //то нужно явно назначить pie в коалиции для данного игрока
 //                coalition.setPies(gamer, gamer.getIncome());
@@ -77,14 +78,15 @@ public class ShapleyPayOff implements PayOff {
             Coalition coalition = null;
             for (int i = 0; i < permutation.size(); i++) {
                 Gamer gamer = permutation.get(i);
+                Game game = gamer.getGame();
                 if (i == 0) {//инициализируем новую коалицию
                     sumPies.put(gamer, sumPies.get(gamer) + gamer.getIncome());
-                    coalition = Coalition.makeTemporaryCoalition(gamer);
-                    CalculateIncome.calculateIncome(coalition);
+                    coalition = Coalition.makeTemporaryCoalition(game, gamer);
+                    game.characteristicFunction.calculateIncome(coalition);
                 } else {
                     int beforeAddingGamerIncome = coalition.getIncome();
                     coalition.gamers.add(gamer);
-                    CalculateIncome.calculateIncome(coalition);
+                    game.characteristicFunction.calculateIncome(coalition);
                     sumPies.put(gamer, sumPies.get(gamer) + coalition.getIncome() - beforeAddingGamerIncome);
                 }
             }
