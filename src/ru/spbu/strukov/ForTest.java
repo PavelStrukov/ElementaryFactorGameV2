@@ -20,7 +20,14 @@ public class ForTest {
 //        return new Game(4, new PreProportionalExcessPayOff(), new TableFunction(file_path));
 //        return new Game(4, new EqualExcessPayOff(), new TableFunction(file_path));
 
-        return new Game(4, new SingleProportionalPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction(file_path));
+//        TODO: example for Diploma
+//        return new Game(6, new SingleProportionalPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction(file_path));
+//        return new Game(6, new OutProportionalPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction(file_path));
+//        return new Game(6, new ShapleyPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction(file_path));
+//        return new Game(6, new PreProportionalExcessPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction(file_path));
+        return new Game(6, new EqualExcessPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction(file_path));
+//
+//
 //        return new Game(4, new ShapleyPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction(file_path));
 
 //        return new Game(4, new OutProportionalPayOff(), new ElementaryFactorsFunction());

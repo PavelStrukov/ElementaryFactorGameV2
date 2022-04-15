@@ -163,7 +163,7 @@ public class Game {
         createAndRregisterNewCoalition(gamerList);
     }
 
-    void play() {//запускаем игру
+    public void play() {//запускаем игру
         for (int i = 0; i < 20; i++) { //Петля по ходам игры.
             //make coalitions
             clearOffers();
@@ -575,7 +575,7 @@ public class Game {
     /**
      * This method provides the process of accepting or cancelling offers
      */
-    private void processOffers() {
+    public void processOffers() {
         for (Gamer gamer : gamers) {
             if (gamer.offer == null) {
                 continue;

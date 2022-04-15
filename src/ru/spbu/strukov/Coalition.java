@@ -14,6 +14,10 @@ public class Coalition extends NumberOwner{
     private static final boolean REAL_COALITION = true;
     private static final boolean TEMP_COALITION = false;
     
+    public static void setCount(int count) {
+        Coalition.count = count;
+    }
+    
     public ArrayList<Gamer> gamers;//тут будут лежать геймеры коалиции
     private Game game;
     public final int name;
