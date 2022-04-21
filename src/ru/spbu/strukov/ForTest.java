@@ -1,6 +1,5 @@
 package ru.spbu.strukov;
 
-import ru.spbu.strukov.CharacteristicFunctions.ElementaryFactorsFunction;
 import ru.spbu.strukov.CharacteristicFunctions.TableFunction;
 import ru.spbu.strukov.PayOffs.*;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import ru.spbu.strukov.subsets.Partitioning;
 public class ForTest {
     
     public static Game getGame(){
-        String file_path = "example.csv";
+        String file_path = "example_1.csv";
 //        return new Game(4, new OutProportionalPayOff(), new TableFunction(file_path));
 //        return new Game(4, new SingleProportionalPayOff(), new TableFunction(file_path));
 //        return new Game(4, new ShapleyPayOff(), new TableFunction(file_path));
@@ -21,11 +20,12 @@ public class ForTest {
 //        return new Game(4, new EqualExcessPayOff(), new TableFunction(file_path));
 
 //        TODO: example for Diploma
-//        return new Game(6, new SingleProportionalPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction(file_path));
-//        return new Game(6, new OutProportionalPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction(file_path));
-//        return new Game(6, new ShapleyPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction(file_path));
-//        return new Game(6, new PreProportionalExcessPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction(file_path));
-        return new Game(6, new EqualExcessPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction(file_path));
+//        Более выгодное для 1 это эта конфигурация
+//        return new Game(5, new SingleProportionalPayOff(), false, TypeOfDecision.PERSONAL, new TableFunction(file_path));
+//        return new Game(5, new OutProportionalPayOff(), false, TypeOfDecision.PERSONAL, new TableFunction(file_path));
+//        return new Game(5, new PreProportionalExcessPayOff(), false, TypeOfDecision.PERSONAL, new TableFunction(file_path));
+//        return new Game(5, new EqualExcessPayOff(), false, TypeOfDecision.PERSONAL, new TableFunction(file_path));
+        return new Game(5, new ShapleyPayOff(), false, TypeOfDecision.PERSONAL, new TableFunction(file_path));
 //
 //
 //        return new Game(4, new ShapleyPayOff(), false, TypeOfDecision.AVERAGE, new TableFunction(file_path));
